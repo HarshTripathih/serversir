@@ -30,8 +30,8 @@ jobs:
           context: .
           push: true
           tags: |
-            637423585008.dkr.ecr.ap-south-1.amazonaws.com/cdk-hnb659fds-container-assets-637423585008-ap-south-1:${{ github.sha }}
-            637423585008.dkr.ecr.ap-south-1.amazonaws.com/cdk-hnb659fds-container-assets-637423585008-ap-south-1:latest
+            637423585008.dkr.ecr.ap-south-1.amazonaws.com/cdk-hnb659fds-container-assets-637423585008-ap-south-1
+            637423585008.dkr.ecr.ap-south-1.amazonaws.com/cdk-hnb659fds-container-assets-637423585008-ap-south-1
 
       - name: Update Docker image on EC2 instance
         uses: appleboy/ssh-action@master
@@ -41,5 +41,5 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 473106654049.dkr.ecr.ap-southeast-2.amazonaws.com
-            docker pull 637423585008.dkr.ecr.ap-south-1.amazonaws.com/cdk-hnb659fds-container-assets-637423585008-ap-south-1:${{ github.sha }}
-            docker run -d --name backend --hostname backend 637423585008.dkr.ecr.ap-south-1.amazonaws.com/cdk-hnb659fds-container-assets-637423585008-ap-south-1:${{ github.sha }}
+            docker pull 637423585008.dkr.ecr.ap-south-1.amazonaws.com/cdk-hnb659fds-container-assets-637423585008-ap-south-1
+            docker run -d --name backend --hostname backend 637423585008.dkr.ecr.ap-south-1.amazonaws.com/cdk-hnb659fds-container-assets-637423585008-ap-south-1
